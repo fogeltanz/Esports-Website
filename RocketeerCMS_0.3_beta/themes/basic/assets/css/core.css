@@ -1,0 +1,578 @@
+/* ##############################################
+#												#
+#	Rocketeer Basic								#
+#	Author: Gavin Weeks							#
+#	Platform: Rocketeer by Gavin Weeks			#
+#												#
+###############################################*/
+
+/* RESET DO NOT EDIT */
+@font-face {
+    font-family: 'WebSymbolsRegular';
+    src: url('../fonts/websymbols-regular-webfont.eot');
+    src: url('../fonts/websymbols-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/websymbols-regular-webfont.woff') format('woff'),
+         url('../fonts/websymbols-regular-webfont.ttf') format('truetype'),
+         url('../fonts/websymbols-regular-webfont.svg#WebSymbolsRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	font-family: inherit;
+}
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: separate;
+	border-spacing: 0;
+}
+caption, th, td {
+	font-weight: normal;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: "";
+}
+blockquote, q {
+	quotes: "" "";
+}
+
+img {display: block}
+/* STYLES START */
+
+
+html {background: #999 }
+body {
+	color: #666;
+	font-size: 13px;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+
+a {
+	color: #bf202f;
+	text-decoration: none;
+	font-weight: bold;
+	-webkit-transition: color 0.1s ease-in-out;
+	-moz-transition: color 0.1s ease-in-out;
+	-o-transition: color 0.1s ease-in-out;
+	-ms-transition: color 0.1s ease-in-out;
+	transition: color 0.1s ease-in-out;
+	}
+
+	
+a:hover {color: #dd4b59;}
+
+p {
+	line-height: 20px;
+	margin-bottom: 10px;
+	}
+
+h2, h3, h4 {}
+
+
+h1 a, h2 a, h3 a, h4 a {font-weight: normal}
+
+.web-symbol {font-family:WebSymbolsRegular !Important; font-weight: normal !Important }
+
+.clear {clear:both; overflow:hidden;}
+
+.meta {line-height: 1; color: #999; font-size: 11px; font-weight: normal; display: block; margin-bottom: 5px}
+.meta a {font-weight: normal;}
+
+.flag {float: left; margin-right: 5px;}
+
+.left, .float-left {float: left;}
+.right, .float-right {float: right;}
+
+.button {line-height: 24px; height: 24px; padding: 0 10px; border: solid 1px #ccc; border-bottom: solid 1px #aaa; box-shadow: inset 0 1px 0 #fff; border-radius: 5px; color: #666; font-weight: bold; text-shadow: 0 1px 0 #fff; font-size: 11px; font-family: helvetica, arial; display: block;
+	background: #ddd;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f5f5f5), to(#ccc));
+}
+	.button:hover {cursor: pointer; color: #333;
+		background: #ccc;
+		background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#bbb));
+	}
+	.button:active {
+		border-bottom: solid 1px #999;
+		background: #ddd;
+		background: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#aaa));}
+
+
+#wrapper {
+	width: 1000px; 
+	padding: 0px;
+	background: #fff;
+	overflow: hidden;
+	margin: 60px auto 20px auto;
+	border-radius: 5px;
+	box-shadow: 0 0 5px 1px rgba(0,0,0,0.2);
+	}
+
+
+#content-wrapper {overflow: visible; position: relative}
+
+#content {
+	margin-bottom: 0px;
+	padding: 20px;
+	margin-top: 0px;
+	overflow: hidden;
+	min-height: 300px;
+	}	
+	#content.has-side {width: 659px; float: left; border-right: solid 1px #ddd;}
+	#content.no-side {width: 960px;}
+
+#content section {clear: both; display: block; }
+
+#sidebar {
+	width: 260px; 
+	padding: 20px 20px 20px 19px;
+	float: right;
+	}
+
+h1 {font-size: 24px; margin-bottom: 20px; letter-spacing: -1px; color: #333}
+
+
+#userbar {position: fixed; top: 0; left: 0; width: 100%; height: 40px; z-index: 9999; box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	background: #222;
+	background: -webkit-gradient(linear, left top, left bottom, from(#333), to(#000));
+}
+#userbar #userbox {width: 1000px; margin: 0 auto;}
+
+#userbar #userbox .loggedout {float: right;}
+#userbar #userbox .loggedout li {float: left;}
+#userbar #userbox .loggedout li a {color: #fff; line-height: 40px; margin-left: 20px; font-weight: normal; display: block}
+#userbar #userbox .loggedout li a:hover {color: #dd4b59}
+
+#userbar #userbox .loggedin {float: right;}
+#userbar #userbox .loggedin .user-thumb {float: left; width: 30px; height: 30px; margin-right: 10px; border-radius: 3px;}
+#userbar #userbox .loggedin .username {color: #fff; line-height: 30px;}
+#userbar #userbox .loggedin .web-symbol {color: #fff;}
+
+#userbar #userbox .loggedin .dropuser {position: relative; height: 30px; padding: 5px 10px;}
+#userbar #userbox .loggedin .dropuser .dropdown {opacity: 0; position: absolute; right: 0; top: 40px; background: #176daf; min-width: 150px; border-radius: 0 0 5px 5px; box-shadow: 0 3px 3px 0px rgba(0,0,0,0.5)}
+#userbar #userbox .loggedin .dropuser:hover {background: #176daf;}
+#userbar #userbox .loggedin .dropuser:hover .dropdown {opacity: 1}
+#userbar #userbox .loggedin .dropuser .dropdown li a {display: block; height: 30px; line-height: 30px; padding: 0 10px; font-size: 11px; color: #fff; border-top: solid 1px #1e76b9;}
+#userbar #userbox .loggedin .dropuser .dropdown li a:hover {color: #dd4b59}
+
+header {padding: 20px; overflow: hidden; border-top: solid 1px #fff; border-bottom: solid 1px #999;
+	background: #eee;
+	background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#ccc));
+}
+header .logo {float: left; font-size: 30px; text-shadow: 0 1px 0 #fff;}
+header .logo a {color: #333}
+header .logo a:hover {color: #999}
+
+nav {display: block; overflow: hidden; box-shadow: inset 0 1px 0 #000;
+	background: #222;
+	background: -webkit-gradient(linear, left top, left bottom, from(#333), to(#000));
+}
+nav ul li {float: left; border-right: solid 1px #333;}
+nav ul li a {line-height: 40px; padding: 0 20px; color: #fff; font-weight: normal; border-right: solid 1px #000; display: block}
+nav ul li.active a {font-weight: bold; background: #fff; color: #333}
+
+.intro {margin-bottom: 20px; padding: 0px 0;}
+.intro h1 {margin-bottom: 5px; font-size: 34px; font-weight: bold; color: #666; letter-spacing: -2px;}
+.intro h2 {font-size: 15px; line-height: 20px; font-weight: normal; color: #999}
+
+#carousel {
+	color: #333; width: 1000px; height: 300px; position: relative; overflow: hidden;
+	}
+	#carousel .carousel-copy {
+		position: absolute; bottom: 0px; left: 0px; width: 680px; padding: 20px;
+		background: #fff;
+		color: #666;
+		border-bottom: solid 1px #ddd;
+		} 
+	#carousel ul {position: absolute; width: 2000em; overflow: hidden}
+	#carousel ul li {float: left; position: relative}
+	#carousel h2 {font-size: 22px; margin-bottom: 5px;}
+	#carousel h2 a {font-weight: normal;}
+	#carousel p { margin: 0; line-height: 18px;}
+
+	#carousel .slideshow, #carousel .slideshow li {width: 1000px !Important;}
+
+	#carousel_surround {position: relative; width: 1000px; height: 300px; margin-bottom: 0px; margin-top: 20px; }
+	#carousel_surround .next, #carousel_surround .prev {height: 80px; width: 30px; position: absolute; z-index:999; font-size: 35px; cursor: pointer; font-family: WebSymbolsRegular; text-align: center; color: #ccc}
+	#carousel_surround .next {top: 100px; right: 20px; }
+	#carousel_surround .prev {top: 100px; left: 20px; }
+	#carousel_surround .next:hover, #carousel_surround .prev:hover {color: #fff;}
+	
+	.carousel-nav {position: absolute; z-index: 999; margin: 0 auto;overflow: hidden; top: 20px; left: 20px; height: 15px; width: 100%;}
+	.carousel-nav li {float: left;}
+	.carousel-nav li a {width: 15px; height: 15px; display: block; text-indent: -9999px; border-radius: 15px; margin-right: 10px; background: rgba(255,255,255,0.3);}
+	.carousel-nav li.activeSlide a {background: #fff; width: 15px; height: 15px; border: 0 !important;}
+
+
+.widget {padding: 0; border: solid 1px #ddd; border-bottom: solid 1px #bbb; border-radius: 5px; margin-bottom: 10px; box-shadow: 0 1px 2px 0px #ddd;}
+.widget h2 {line-height: 30px; font-size: 11px; text-transform: uppercase; margin: 0; padding: 0 10px; border-radius: 5px 5px 0 0; text-shadow: 0 1px 0 #fff; border-bottom: solid 1px #bbb; box-shadow: inset 0 1px 0 #fff;
+		background: #eee;
+		background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#ccc));
+}
+.widget ul li {list-style: none; overflow: hidden; border-bottom: solid 1px #eee; padding: 10px; margin: 0;}
+.widget ul li:nth-child(even) {background: #f5f5f5}
+.widget ul li:hover {background: #eee;}
+.widget ul li:last-child {margin-bottom: 0}
+.widget ul li h3 {font-size: 16px; margin-bottom: 7px}
+.widget ul li h3 a {font-weight: bold}
+.widget ul li .rf-thumb {float: left; margin-right: 10px;}
+
+.sidewidget h2 {margin-bottom: 0}
+.sidewidget ul li {padding: 5px 10px; border-width: 0 0 1px 0; border-radius: 0}
+.sidewidget ul li h3 {font-size: 12px; margin-bottom: 4px}
+.sidewidget ul li .rf-thumb {width: 24px; border: solid 3px #ddd;}
+.sidewidget ul li .meta {margin: 0; font-size: 10px}
+
+
+	
+footer {
+	background: #eee;
+	padding: 20px;
+	overflow: hidden;
+	clear: both;
+	text-shadow: 0 1px 0 #fff;
+	}
+	footer p {margin: 0}
+	footer p.copyright {float: left;}
+	footer p.rocket-link {float: right;}
+
+/* -------------------------------- */	
+/* SECTION SPECIFIC */
+/* -------------------------------- */
+
+#page-title {font-size: 24px; margin-bottom: 20px; letter-spacing: -1px; color: #333;
+	}
+
+
+.page img {max-width: 980px; height: auto}
+.has-side.page img {max-width: 660px}
+
+
+/* -------------------------------- */
+/* COMMENTS */
+/* -------------------------------- */
+
+#comment-form {
+	padding: 0 0 10px 0; overflow: hidden
+	}
+#comment-form h3 {font-size: 13px; margin-bottom: 10px; font-weight: bold; background: #f5f5f5; line-height: 30px; padding: 0 10px; border-bottom: solid 1px #eee;}
+#comment-form h4 {text-align: center; font-size: 14px; color: #333; text-transform: none; margin-bottom: 0px; font-weight: normal}
+#comment-form textarea {width: 98.5%; margin-bottom: 10px; font-size: 12px; line-height: 20px; padding: 3px; height: 120px;}
+	
+	
+#comment-form #user-info {float: left; width: 75px; margin-right: 20px; margin-left: 10px;}
+#comment-form #user-info a {display: block}
+#comment-form #user-info img {float: left; width: 50px; height: 50px; margin-bottom: 5px;}
+#comment-form #write-comment {float: left; width: 75%}
+
+#the-comments {}
+#the-comments li {overflow: hidden; padding-bottom: 0px;}
+	#the-comments .comment-author {padding: 0px; overflow: hidden; margin-bottom: 10px;}
+		#the-comments .meta {background: none; font-size: 10px; color: #999; height: 16px; margin-bottom: 0px; display: block; padding: 0; line-height: 1 }
+		#the-comments .comment-author a img {width: 40px; float: left; margin-right: 10px;}
+		#the-comments .comment-author h3 {margin-bottom: 0px; margin-top: 5px }
+			#the-comments .comment-author h3 a {font-family: museo-sans-rounded, Helvetica, Arial; font-size: 18px; font-weight: normal;}
+		#the-comments .comment-author .name {display: block; font-weight: normal; color: #999; font-size: 11px; margin-bottom: 3px;}
+		#the-comments .comment-author .team {display: block; font-size: 11px;}
+.comment-date {color: #999; margin-bottom: 10px; font-size: 11px; border-bottom: solid 1px #eff2f7; padding-bottom: 5px; position: relative}
+.comment-number {position: absolute; right: 0px; top: 0;}
+
+#the-comments .the-comment {position: relative}
+#the-comments .the-comment img {max-width: 450px;}
+#the-comments .meta {float: right; text-align: right; padding-bottom: 5px; margin-top: 10px}
+	
+#the-comments .edit-options {overflow: hidden; display: none; width: 100%; position: absolute; bottom: 0px; right: 0px }
+#the-comments .edit-options li {border: 0; padding: 0; float: right;}
+#the-comments li:hover .edit-options {display: block;}
+	
+/* -------------------------------- */
+/* ARTICLES */
+/* -------------------------------- */
+
+.articles ul#the-articles {}
+
+.articles .rf-thumb {float: left; margin-right: 10px; width: 160px;}
+.articles .user-thumb {float: left; margin-right: 10px; width: 80px;}
+.articles h2 {margin-bottom: 8px; line-height: 1; text-transform: none; font-size: 14px}
+.articles h2 a {font-weight: bold;}
+.articles p {margin: 0}
+
+
+#authors li {float: left; margin-right: 5px; margin-bottom: 5px; list-style: none;}
+#authors li img {border: solid 3px #d8e0ef; width: 40px; height: 40px;}
+
+#the-title {font-size: 30px; color: #333; font-weight: bold; position: relative; margin-bottom: 10px;}
+#the-title .category {font-size: 20px; height: 30px; line-height: 32px;}
+
+.the-category {color: #999; float: right;}
+.the-category span {color: #666}
+
+.is-article p {margin-bottom: 20px;}
+
+#the-post {}
+#the-post img {display: inline; max-width: 660px; height: auto; margin-bottom: 10px;}
+
+.date {color: #999; font-size: 11px; margin: 10px 0 10px 0; display: block; line-height: 25px; position: relative; background: #eee; border-radius: 5px; padding: 0 10px; text-shadow: 0 1px 0 #fff;}
+.date .category {float: right; padding: 0; color: #999; font-size: 11px; margin-left: 20px; }
+
+#post-meta {}
+	#post-meta .author-avatar img {height: 25px; float: left; margin-right: 10px; border: solid 3px #ddd;}
+	#post-meta .author-meta {font-size: 11px;  margin-top: 10px;font-family: Helvetica, Arial; color: #999; font-weight: normal}
+		#post-meta h4.author-meta {font-size: 11px; margin-top: 3px;color: #999; font-weight: normal;}
+	#post-meta .author-meta a {font-size: 18px; font-weight: bold }
+	
+	#post-meta .sharing { float: right; width: 400px; margin: 0}
+	#post-meta .sharing span { margin-bottom: 0px}
+	#post-meta p {float: right; width: 400px;}
+
+/* --------------------------------- */
+/* FORUMS */
+/* --------------------------------- */
+
+.who-is-online {line-height: 20px; }
+.who-is-online .user-online {height: 16px; width: 16px; float: left; margin: 7px 5px 0 10px; background: green; border-radius: 20px;}
+.who-is-online h2 {padding-left: 0px;}
+.who-is-online ul
+.who-is-online ul li {float: left; margin: 0 5px 0 0; padding: 0; border: 0;}
+.who-is-online ul li:hover {background: none;}
+.who-is-online ul li a {font-weight: normal}
+.who-is-online ul li a:hover {background: none}
+.who-is-online ul li.team a {font-weight: bold;}
+.who-is-online ul li.moderator a {color: green; font-weight: bold}
+.who-is-online ul li.admin a {color: #ca0227; font-weight: bold;}
+.who-is-online ul li.admin a:hover {color: inherit}
+
+.sub-forum-list {list-style: none;}
+.sub-forum-list li {}
+.sub-forum-list.widget {padding-bottom: 0 !Important}
+.sub-forum-list.widget h2 {margin-bottom: 0 !important}
+
+.forums #page-title {margin-bottom: 20px}
+.forums #section-title {font-size: 20px; margin-bottom: 10px; font-weight: normal;}
+
+.forums h2.topic {font-size: 24px; font-weight: normal; line-height: 40px; margin-bottom: 10px;}
+.forums h2.topic span {font-size: 12px; color: #666; float: left; font-weight: normal; margin-right: 20px; text-transform: uppercase; font-family: helvetica, arial;}
+.forums h2.topic .is-sticky { font-family: helvetica, arial; font-weight: bold; font-size: 10px; margin-top: 10px; float: left; margin-right: 10px}
+
+.forum-breadcrumb {overflow: hidden; height: 30px; line-height: 30px; border: solid 1px #eee; padding: 0 0px; margin-bottom: 10px;}
+
+.forum-breadcrumb li {float: left; margin:0;}
+.forum-breadcrumb li:nth-child(even) {background: #eee;}
+.forum-breadcrumb li:first-child {background: none;}
+.forum-breadcrumb li a {padding: 0 10px;}
+
+#forum-list {}	
+#forum-list h2 {font-size: 12px; line-height: 40px; text-indent: 0; margin-bottom: 0px; position: relative; text-shadow: 0 1px 0 #fff; position: relative }
+#forum-list h2 span {display: none; font-size: 11px; line-height: 40px; color: #999; position: absolute; left: 350px; font-weight: normal; font-family: Helvetica, arial; text-transform: uppercase}
+#forum-list .widget {padding-bottom: 0 !Important}
+
+.the-forums {margin-bottom: 0px;}
+
+.the-forums li {border-bottom: solid 1px #eee; overflow: hidden; padding: 5px 10px; position: relative; margin: 0px !important;}	
+.the-forums li:hover {background: #f5f5f5}
+.the-forums li:last-child {border-bottom: 0}
+.the-forums li h3 {font-size: 15px; margin-top: 0px; line-height: 16px; font-family: Sansus, helvetica, arial; font-weight: bold; margin-bottom: 0px;}
+.the-forums li .thumb-left {float: left; margin-right: 20px; display: none;}	
+.the-forums li p {margin: 0}
+.the-forums li .forum-info {float: left; width: 400px; margin-right: 20px;}
+.the-forums li .forum-info h3 {font-size: 14px; margin-bottom: 3px}
+.the-forums li .latest-thread {font-size: 11px; color: #61718a;margin-left: 580px; margin-top: 2px}
+.the-forums li .latest-thread span {}
+.the-forums li .latest-thread .thread-title {font-size: 12px; font-family: helvetica, arial; font-weight: bold; display: block; margin: 0 0 3px 35px; }
+.the-forums li .latest-thread .thread-title a {font-weight: bold;}
+.the-forums li .latest-thread .u-thumb {float: left; width: 30px; height: 30px; margin-top: 0px; margin-right: 5px}
+.the-forums li .latest-thread a {font-weight: normal;}
+.the-forums li .latest-thread a:hover {text-decoration: underline;}
+.the-forums li .forum-threads { line-height: 30px;font-size: 12px; font-weight: normal; color: #666; float: left;}
+.the-forums li .forum-threads span {font-weight: bold}
+
+.sub-forums { padding: 0 0 0 20px; clear: both; background: url(../images/ico/subforum-ico.png) 0 6px no-repeat; overflow: hidden}
+.sub-forums li {float: left !important; width: auto; padding: 0; margin: 0 5px 0 0 !important; border: 0;}
+.sub-forums li a {line-height: 20px}
+
+.back {padding: 0 1px 0 7px; float: left; margin-right: 5px;}	
+.back span {width: 20px; font-size: 16px; font-family: WebSymbolsRegular,helvetica,arial; color: #333; text-shadow: 0 1px 0 #fff; display: block;}	
+	
+.forum-table {text-align: left; clear: both; margin-top: 20px; margin-left: 0px;}
+.forum-table th {font-weight: normal; font-family: Sansus,  Helvetica, Arial; font-size: 13px; padding: 10px 0 10px 0}
+.forum-table td,.forum-table th {border-bottom: solid 1px #eee;}
+.forum-table .replies {text-align: left}
+.forum-table .replies span {display: block; line-height: 15px}
+.forum-table tr:hover {background: #f5f5f5; cursor: pointer}
+.forum-table tr:hover a {color: #444 !Important}
+.forum-table .ico {text-align: center}
+.forum-table .ico img {margin: 0 auto;}
+.forum-table a {padding: 11px 0 5px 0; display: block; font-weight: bold;}	
+
+.forum-table .date, .forum-table .latest-by {display: block; padding: 0; margin: 0; font-size: 11px; overflow: hidden; background: none}
+.forum-table .date a, .forum-table .latest-by a	{ padding: 0 0 5px 0; line-height: 15px;}
+.forum-table .date a {font-weight: normal; color: #999; padding: 5px 0 0 0;}
+.forum-table .date a:hover {text-decoration: underline}
+.forum-table .latest-by {margin-bottom: 5px; color: #999}
+.forum-table .latest-by a {display: inline}
+
+.forum-table .small {font-size: 11px}
+
+.is-sticky { padding: 0 5px; margin: 9px 5px 0 0; line-height: 18px; font-family: helvetica, arial; text-transform: uppercase; color: #333; text-shadow: 0 1px 0 #fff; border-radius: 3px; font-size: 10px; font-weight: bold; float: left;
+	background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#ccc));
+}
+.started_by {font-size: 11px; display: block;  margin-bottom: 10px; color: #999}
+	.started_by a {display: inline; padding: 0; color: #666; font-weight: normal;
+	}
+	
+#the-posts {margin-bottom: 10px;}
+#the-posts li { padding-top: 0px; padding-bottom: 10px; overflow: hidden; position: relative; clear: both; border-bottom: solid 2px #eee;}
+	#the-posts .post-author {float: left; width: 250px; margin-right: 20px; padding: 20px 20px 20px 0; min-height: 110px}
+		#the-posts .user-buttons {position: absolute; top: 124px; left: 20px; padding: 0px; overflow: hidden; width: 100%}
+		#the-posts .user-buttons .generic_button {font-family: WebSymbolsRegular; font-weight: normal; height: 20px; line-height: 20px; font-size: 10px}
+		#the-posts .user-buttons span.generic_button {font-family: helvetica, arial;}
+		#the-posts .post-author a img {width: 81px; height: 81px; float: left; margin-right: 20px;}
+		#the-posts .post-author .user-avatar {position: relative; width: 81px; display: block}
+			#the-posts .post-author .user-online { width: 10px; height: 10px; float: left; margin-right: 5px; margin-top: 2px; background: green; border-radius: 20px;}
+		#the-posts .post-author h3 {margin-bottom: 3px; margin-top: 6px;}
+			#the-posts .post-author h3 a {font-family: Sansus, Helvetica, Arial; font-size: 17px; }
+		#the-posts .post-author .is-admin {padding: 0 5px; margin: 0px 5px 5px 0; line-height: 18px; font-family: helvetica, arial; text-transform: uppercase; background: #ca0227; color: #FFF; text-shadow: 0 1px 0 rgba(0,0,0,0.6); border-radius: 3px; font-size: 10px; font-weight: bold; display: inline-block}
+		#the-posts .post-author .is-team {padding: 0 5px; margin: 0px 5px 5px 0; line-height: 18px; height: 16px; font-family: helvetica, arial; text-transform: uppercase; background: #0d509c; color: #FFF; text-shadow: 0 1px 0 rgba(0,0,0,0.6); border-radius: 3px; font-size: 10px; font-weight: 100; display: inline-block}
+		#the-posts .post-author .is-mod {padding: 0 5px; margin: 0px 5px 5px 0; line-height: 18px; height: 16px; font-family:  helvetica, arial; text-transform: uppercase; background: #367800; color: #FFF; text-shadow: 0 1px 0 rgba(0,0,0,0.6); border-radius: 3px; font-size: 10px; font-weight: 100; display: inline-block}
+		#the-posts .post-author .name {display: block; font-weight: normal; color: #999; font-size: 12px; margin-bottom: 3px;}
+		#the-posts .post-author .team {display: block; font-size: 11px;}
+.post-date {color: #999; margin-bottom: 10px; font-size: 11px; border-bottom: solid 1px #eee; padding-bottom: 5px; position: relative; float: right;}
+.post-number {position: absolute; right: 0px; top: 0;}
+
+#the-posts .the-post {text-shadow: 0 1px 0 #fff;position: relative; margin-left: 290px; line-height: 18px; padding: 20px 20px 20px 0;}
+#the-posts .the-post .speech-mark {background: url(../images/ico/grey-speech-top.png) no-repeat; position: absolute; top: -20px; left: 30px; display: none; width: 20px; height: 20px}
+#the-posts li .edit-options {display: none; border-radius: 5px; overflow: hidden;  position: absolute; right: 10px; bottom: 10px;}
+#the-posts li:hover .edit-options {display: block !important}
+#the-posts li .edit-options li.adminedit {display: none}
+#the-posts li .edit-options li {background: 0; padding: 0;}
+#the-posts li .edit-options li a {float: right;}
+#the-posts .meta {text-align: left;  background: none; margin-top: 20px; height: auto; font-size: 11px; padding: 0; line-height:1; margin-right: 20px; margin-bottom: 0; color: #999;}
+#the-posts .signature {margin-top: 40px; padding-top: 20px; border-top: solid 1px #ddd;}
+#the-posts .signature img {max-height: 200px; width: auto;}
+#the-posts .the-post p {margin-right: 150px;}
+#the-posts .the-post img {max-width: 600px;}
+
+#new-post {background: #eee; padding: 20px; margin-bottom: 0px; margin-top: 10px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	overflow: hidden}
+
+#new-post h2 {color: #333; margin-bottom: 10px; font-weight: normal; font-size: 14px; text-transform: uppercase;}
+#new-post h4 {text-align: center;font-family: Sansus,  Helvetica, Arial; font-size: 20px; color: #999; text-transform: none; margin-bottom: 0px; font-weight: normal}	
+
+#new-post #write-post {margin-left: 250px; }
+#new-post #write-post textarea {width: 98.5%; border: solid 1px #ddd; margin-bottom: 10px; font-family: Helvetica, arial, verdana; font-size: 12px; line-height: 20px; padding: 3px; height: 150px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-transition:all 0.5s ease-in-out;
+	-moz-transition:all 0.5s ease-in-out;
+	-o-transition:all 0.5s ease-in-out;
+	-ms-transition:all 0.5s ease-in-out;	
+	transition:all 0.5s ease-in-out;
+	}
+	
+	#new-post #write-post textarea:focus {height: 150px;border: solid 1px #133E87; box-shadow: 0 0 10px #999}
+#new-post #user-info {float: left; width: 230px;}
+#new-post #user-info img {width: 70px; height: 70px; float: left; margin-right: 10px;border: 1px solid #666; }
+#new-post #user-info h3 {margin-bottom: 2px; font-size: 20px; font-family: Sansus, helvetica, arial;}
+#new-post #user-info .name {font-size: 12px; color: #999}
+
+.new-thread-form {border: solid 1px #eee; border-radius: 5px; padding: 10px; width: 650px;}
+.new-thread-form .form-row input[type="checkbox"] {float: left; margin-right: 5px}
+
+.context-nav {overflow: hidden; }
+
+/* -------------------------------- */
+/* USER PROFILES */
+/* -------------------------------- */
+
+.user-profile .user-image {float: left; margin-right: 20px; max-width: 250px; border: solid 5px #ddd;}
+.user-profile h1 {font-size: 40px; margin-bottom: 5px; line-height: 1;}
+.user-profile h1 .flag {margin-top: 13px;}
+.user-profile p.full-name {font-size: 20px;}
+.user-profile .widget {overflow: hidden}
+.user-profile .quick-info {margin-bottom: 10px;}
+.user-profile .quick-info li {line-height: 20px;}
+.user-profile .quick-info li span {margin-right: 10px; color: #999; float: left; width: 25px;}
+
+.profile-edit {float: left; width: 640px;}
+.photo-edit {float: right; width: 280px; padding-left: 20px;}
+.photo-edit img {width: 200px; border: solid 5px #ddd}
+
+/* -------------------------------- */	
+/* FORMS */
+/* -------------------------------- */
+
+#sign-in {margin: 0 auto; padding: 0 20px; 
+	-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;
+	overflow: hidden;
+	}
+#sign-in-form {float: left; width: 710px; padding: 20px ; border-radius: 3px; background: #fff;}
+#social-sign-in {margin-top: 0px; padding: 20px; float: right; background: #fff; border-radius: 3px; width:390px}
+
+fieldset legend {font-weight: bold;}
+
+.form-row {padding: 5px 0; overflow: hidden; margin-bottom: 5px;}
+.form-row .form-half {float: left; width: 50%;}
+.form-row label {font-size: 12px; line-height: 30px; text-align: left; margin-right: 20px;display: block;float: left; width: 150px;font-weight: normal; color: #666; font-family:museo-sans-rounded,  Helvetica, Arial; padding: 0;}
+.form-row label.long {float: none; margin-bottom: 10px;}
+.form-row input[type="text"], .form-row input[type="password"] {border: 1px solid #ddd; background: #fff; border-radius: 3px; 
+	padding: 7px 10px;
+	font-size: 11px; color: #666; font-weight: bold;
+	width: 50%;
+	margin: 0 !important;
+	}
+.form-row input[type="text"]:focus, .form-row input[type="password"]:focus {color: #333; background: #f5f5f5;}
+.form-row textarea {width: 418px !important; height: 100px;}
+.form-row.textarea .formtextarea {float: left;}
+
+.password-fill {padding: 10px; border: solid 1px #ddd; border-radius: 5px; margin-bottom: 20px;}
+.password-fill .fyi {color: #999; background: #f5f5f5; border-radius: 5px; line-height: 25px; padding: 0 10px; font-size: 11px; text-shadow: 0 1px 0 #fff;}
+
+#social-signin {margin-top: 20px;}
+#social-signin h3 {margin-bottom: 10px;}
+#social-signin ul li a {margin-right: 10px;}
+
+.button.twit {width: 134px; height: 26px; background: url(../images/buttons/twitter.png) no-repeat -3px -3px; border: 0; text-indent: -9999px; display: block; border-radius: 0;}
+	.button.twit:hover { background: url(../images/buttons/twitter.png) no-repeat -3px -34px;}
+	.button.twit:active { background: url(../images/buttons/twitter.png) no-repeat -3px -3px;}
+
+.button.fb {width: 134px; height: 26px;background: url(../images/buttons/facebook.png) no-repeat -3px -3px; border: 0; text-indent: -9999px; display: block; border-radius: 0;}
+	.button.fb:hover { background: url(../images/buttons/facebook.png) no-repeat -3px -34px;}
+	.button.fb:active { background: url(../images/buttons/facebook.png) no-repeat -3px -3px;}
+
+.pagination {overflow: hidden; margin-bottom: 10px;  padding: 5px; background: #eee; border-radius: 5px;}
+.pagination li {border: 0 !important; margin-bottom: 0 !important; float: left; margin-right: 5px; padding: 0 !important;}
+.pagination li a {padding: 0px 9px 0px 9px; display: block; background: #fff; line-height: 23px; color: #666 !important; font-weight: bold; font-size:10px; border-radius: 3px;}
+.pagination li a:hover {background: #176daf; color: #fff !important }
+.pagination li .web-symbol {font-size: 8px; font-weight: normal !important;}
+.pagination li.current {padding: 0 9px 0 9px !important; background: #333; line-height: 23px; color: #fff !important; font-weight: normal; font-size:10px; border-radius: 3px; font-weight: bold}
+
+

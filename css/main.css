@@ -1,0 +1,19 @@
+html, body, div, p{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  }
+
+/* Main Layout */
+
+body{}
+
+#wrapper{
+	background-color: #000;
+	height: 100%;
+	width: 960px;	
+	}
+
+/* Extras */
+
+.clear{clear:both;}
